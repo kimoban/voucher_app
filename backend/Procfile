@@ -1,0 +1,3 @@
+web: gunicorn voucher_project.wsgi --log-file -
+worker: celery -A voucher_project worker --loglevel=info
+beat: celery -A voucher_project beat --loglevel=info
