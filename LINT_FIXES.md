@@ -2,7 +2,7 @@
 
 ## Frontend (TypeScript/React)
 
-### ✅ Fixed Issues
+### ✅ Fixed Issues (Backend)
 
 1. **React Hook Dependencies** - `auth-context.tsx`
    - Wrapped `refreshTokens`, `logout`, and `fetchUserProfile` with `React.useCallback`

@@ -115,7 +115,7 @@ git push -u origin main
 python manage.py createsuperuser
 ```
 
-4. Follow the prompts to create admin user
+1. Follow the prompts to create admin user
 
 ### Step 8: Test Backend
 

@@ -1,16 +1,20 @@
 # Voucher App API Endpoints Guide
 
 ## Base URL
+
 - **Development:** `http://127.0.0.1:8000`
 - **Frontend:** `http://localhost:3000`
 
 ## Quick Test Endpoints
 
 ### 1. Health Check (Public)
-```
+
+```url
 GET http://127.0.0.1:8000/api/health/
 ```
+
 **Expected Response:**
+
 ```json
 {
   "status": "healthy",
@@ -19,10 +23,13 @@ GET http://127.0.0.1:8000/api/health/
 ```
 
 ### 2. Test Endpoint (Public)
-```
+
+```url
 GET http://127.0.0.1:8000/api/test/
 ```
+
 **Expected Response:**
+
 ```json
 {
   "message": "API is working!",
@@ -31,15 +38,18 @@ GET http://127.0.0.1:8000/api/test/
 ```
 
 ### 3. Voucher Types (Public)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/types/
 ```
+
 **Expected Response:** Array of voucher types with pricing and details
 
 ## Authentication Endpoints
 
 ### Register New User
-```
+
+```url
 POST http://127.0.0.1:8000/api/auth/register/
 Content-Type: application/json
 
@@ -52,8 +62,9 @@ Content-Type: application/json
 }
 ```
 
-### Login
-```
+### Login (PowerShell)
+
+```url
 POST http://127.0.0.1:8000/api/auth/login/
 Content-Type: application/json
 
@@ -62,13 +73,16 @@ Content-Type: application/json
   "password": "SecurePass123!"
 }
 ```
+
 **Response includes:**
+
 - `access` - JWT access token (valid for 60 minutes)
 - `refresh` - JWT refresh token (valid for 7 days)
 - `user` - User profile information
 
 ### Refresh Token
-```
+
+```url
 POST http://127.0.0.1:8000/api/auth/token/refresh/
 Content-Type: application/json
 
@@ -78,7 +92,8 @@ Content-Type: application/json
 ```
 
 ### Get User Profile (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/auth/profile/
 Authorization: Bearer your-access-token-here
 ```
@@ -86,18 +101,21 @@ Authorization: Bearer your-access-token-here
 ## Voucher Endpoints
 
 ### List All Voucher Types (Public)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/types/
 ```
 
 ### List My Vouchers (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/my-vouchers/
 Authorization: Bearer your-access-token-here
 ```
 
 ### Purchase Voucher (Protected)
-```
+
+```url
 POST http://127.0.0.1:8000/api/vouchers/purchase/
 Authorization: Bearer your-access-token-here
 Content-Type: application/json
@@ -109,7 +127,8 @@ Content-Type: application/json
 ```
 
 ### Redeem Voucher (Protected)
-```
+
+```url
 POST http://127.0.0.1:8000/api/vouchers/redeem/
 Authorization: Bearer your-access-token-here
 Content-Type: application/json
@@ -121,19 +140,22 @@ Content-Type: application/json
 ```
 
 ### Get Voucher Details (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/detail/VOUCHER-CODE/
 Authorization: Bearer your-access-token-here
 ```
 
 ### Get Voucher Statistics (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/stats/
 Authorization: Bearer your-access-token-here
 ```
 
 ### Get Usage History (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/vouchers/usage-history/
 Authorization: Bearer your-access-token-here
 ```
@@ -141,7 +163,8 @@ Authorization: Bearer your-access-token-here
 ## Payment Endpoints
 
 ### Create Payment Intent (Protected)
-```
+
+```url
 POST http://127.0.0.1:8000/api/payments/create-payment-intent/
 Authorization: Bearer your-access-token-here
 Content-Type: application/json
@@ -153,7 +176,8 @@ Content-Type: application/json
 ```
 
 ### Confirm Payment (Protected)
-```
+
+```url
 POST http://127.0.0.1:8000/api/payments/confirm-payment/
 Authorization: Bearer your-access-token-here
 Content-Type: application/json
@@ -166,13 +190,15 @@ Content-Type: application/json
 ```
 
 ### Payment History (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/payments/history/
 Authorization: Bearer your-access-token-here
 ```
 
 ### Get Transaction Details (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/payments/transaction/123/
 Authorization: Bearer your-access-token-here
 ```
@@ -180,16 +206,20 @@ Authorization: Bearer your-access-token-here
 ## Analytics Endpoints
 
 ### Dashboard Analytics (Protected)
-```
+
+```url
 GET http://127.0.0.1:8000/api/analytics/dashboard/
 Authorization: Bearer your-access-token-here
 ```
 
 ## Admin Panel
-```
+
+```url
 http://127.0.0.1:8000/admin/
 ```
+
 **Note:** You need to create a superuser first:
+
 ```bash
 python manage.py createsuperuser
 ```
@@ -197,16 +227,19 @@ python manage.py createsuperuser
 ## Testing with cURL (PowerShell)
 
 ### Test Health Endpoint
+
 ```powershell
 Invoke-WebRequest -Uri http://127.0.0.1:8000/api/health/ -UseBasicParsing | Select-Object StatusCode, Content
 ```
 
 ### Test Voucher Types
+
 ```powershell
 Invoke-WebRequest -Uri http://127.0.0.1:8000/api/vouchers/types/ -UseBasicParsing | ConvertFrom-Json
 ```
 
 ### Register a User
+
 ```powershell
 $body = @{
     email = "test@example.com"
@@ -220,6 +253,7 @@ Invoke-WebRequest -Uri http://127.0.0.1:8000/api/auth/register/ -Method POST -Bo
 ```
 
 ### Login
+
 ```powershell
 $body = @{
     email = "test@example.com"
@@ -282,7 +316,8 @@ print(f"Profile: {response.json()}")
 1. **Trailing Slashes:** Django requires trailing slashes on endpoints (e.g., `/api/health/` not `/api/health`)
 
 2. **Authentication:** Protected endpoints require a Bearer token in the Authorization header:
-   ```
+
+   ```bash
    Authorization: Bearer your-jwt-access-token
    ```
 
@@ -298,12 +333,14 @@ print(f"Profile: {response.json()}")
 ## Frontend Integration
 
 The frontend uses the API through `src/lib/api.ts` which handles:
+
 - Automatic token refresh when access token expires
 - Authorization headers
 - Error handling
 - Type-safe requests
 
 Example usage in frontend:
+
 ```typescript
 import { authApi, vouchersApi } from '@/lib/api';
 

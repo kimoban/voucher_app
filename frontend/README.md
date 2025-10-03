@@ -113,7 +113,7 @@ frontend/
    npm run dev
    ```
 
-Application will be available at **http://localhost:3000**
+Application will be available at [http://localhost:3000](http://localhost:3000)
 
 ### Verify Installation
 

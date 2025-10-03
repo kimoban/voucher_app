@@ -28,11 +28,13 @@
 
 ✅ All app URLs properly configured:
 
+```bash
    - `apps/authentication/urls.py`
    - `apps/vouchers/urls.py`
    - `apps/payments/urls.py`
    - `apps/analytics/urls.py`
    - `voucher_project/urls.py` (main URLs updated)
+   ```
 
 ## Environment Variables Needed
 
