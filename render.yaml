@@ -2,7 +2,7 @@ services:
   # Django Web Service
   - type: web
     name: voucher-app-backend
-    env: python
+    runtime: python
     region: oregon
     plan: starter
     branch: main
@@ -24,7 +24,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
-        value: False
+        value: "False"
       - key: ALLOWED_HOSTS
         sync: false
       - key: STRIPE_PUBLISHABLE_KEY
@@ -43,7 +43,7 @@ services:
   # Celery Worker
   - type: worker
     name: voucher-app-worker
-    env: python
+    runtime: python
     region: oregon
     plan: starter
     branch: main
@@ -67,9 +67,8 @@ services:
   # Celery Beat (Scheduler)
   - type: worker
     name: voucher-app-beat
-    env: python
+    runtime: python
     region: oregon
-    plan: starter
     branch: main
     buildCommand: "pip install -r backend/requirements.txt"
     startCommand: "celery -A voucher_project beat --loglevel=info --chdir backend"
@@ -103,4 +102,4 @@ databases:
     user: voucher_app_user
     region: oregon
     plan: starter
-    postgresMajorVersion: 15
+    postgresMajorVersion: "17"
