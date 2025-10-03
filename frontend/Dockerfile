@@ -1,4 +1,7 @@
-FROM node:18-alpine
+FROM node:18-alpine3.19
+
+# Update Alpine packages to reduce vulnerabilities
+RUN apk update && apk upgrade --no-cache
 
 # Set working directory
 WORKDIR /app

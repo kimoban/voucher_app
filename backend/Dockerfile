@@ -1,8 +1,8 @@
-FROM python:3.11-slim
+FROM python:3.11-slim-bookworm
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set work directory
 WORKDIR /app
@@ -13,6 +13,10 @@ RUN apt-get update \
         postgresql-client \
         build-essential \
         libpq-dev \
+    && apt-get upgrade -y \
+    && apt-get dist-upgrade -y \
+    && apt-get autoremove -y \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
